@@ -1,1 +1,1 @@
-export declare function convertAddressToUsername(ethereumAddress: string): Promise<string>;
+export declare function convertAddressToUsername(ethereumAddress: string): string;
