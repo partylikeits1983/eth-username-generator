@@ -6,7 +6,7 @@ function hashAddressToSeed(ethereumAddress: string): bigint {
     return BigInt('0x' + hash.substring(2));
 }
 
-async function selectWordsAndNumber(ethereumAddress: string): Promise<{words: string[], number: number}> {
+function selectWordsAndNumber(ethereumAddress: string): {words: string[], number: number} {
     const seed = hashAddressToSeed(ethereumAddress);
     const words: string[] = [];
     
@@ -25,11 +25,11 @@ async function selectWordsAndNumber(ethereumAddress: string): Promise<{words: st
     };
 }
 
-export async function convertAddressToUsername(ethereumAddress: string): Promise<string> {
+export function convertAddressToUsername(ethereumAddress: string): string {
     const capitalizeFirstLetter = (word: string): string => word.charAt(0).toUpperCase() + word.slice(1);
 
     try {
-        const result = await selectWordsAndNumber(ethereumAddress);
+        const result = selectWordsAndNumber(ethereumAddress);
         const word1 = result.words[0];
         const word2 = capitalizeFirstLetter(result.words[2]);
         const number = result.number.toString();
